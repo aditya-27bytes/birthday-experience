@@ -10,8 +10,8 @@ interface MagazineCoverProps {
 export function MagazineCover({ data }: MagazineCoverProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Pick a portrait-like photo for the cover, or fallback to the first photo
-  const coverPhoto = data.photos[1] || data.photos[0];
+  // Use specifically chosen magazine photo, or fallback to the second or first photo
+  const coverPhoto = data.magazinePhoto || data.photos[1] || data.photos[0];
 
   return (
     <section 
@@ -37,7 +37,7 @@ export function MagazineCover({ data }: MagazineCoverProps) {
         {/* Masthead (Magazine Name) */}
         <div className="absolute top-8 left-0 right-0 text-center mix-blend-difference text-white pointer-events-none z-10">
           <h2 className="text-editorial text-[15vw] md:text-[12rem] leading-[0.75] tracking-tighter uppercase font-bold">
-            VOUGE
+            {data.magazineName || "VOUGE"}
           </h2>
           <p className="tracking-[0.4em] text-sm md:text-base mt-2 opacity-90">
             THE {data.recipientName.toUpperCase()} ISSUE

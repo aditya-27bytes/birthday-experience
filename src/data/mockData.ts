@@ -2,6 +2,8 @@ export const MOCK_BIRTHDAY_DATA = {
   id: "priya-2026",
   recipientName: "Priya",
   nickname: "Pri",
+  magazineName: "VOUGE",
+  magazinePhoto: "https://images.unsplash.com/photo-1529156069898-49953eb1b5ce?q=80&w=800&auto=format&fit=crop",
   dateOfBirth: "1996-06-07",
   currentAge: 30,
   relationship: "Best Friend",

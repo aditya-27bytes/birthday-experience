@@ -12,6 +12,8 @@ export interface BirthdayData {
   id: string;
   recipientName: string;
   nickname: string;
+  magazineName?: string;
+  magazinePhoto?: string;
   dateOfBirth: string;
   currentAge: number;
   relationship: string;

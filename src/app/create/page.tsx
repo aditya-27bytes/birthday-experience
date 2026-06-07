@@ -19,6 +19,7 @@ export default function CreateExperience() {
     id: "custom",
     recipientName: "",
     nickname: "",
+    magazineName: "VOUGE",
     dateOfBirth: "",
     currentAge: 18,
     relationship: "",
@@ -142,6 +143,12 @@ export default function CreateExperience() {
                     <input type="number" className="w-full bg-white/5 border border-white/10 rounded-lg p-3 outline-none focus:border-brand-primary"
                       value={formData.currentAge} onChange={(e) => setFormData({ ...formData, currentAge: parseInt(e.target.value) })} />
                   </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm mb-2 text-brand-light/70">Magazine Name (Cover Masthead)</label>
+                    <input type="text" className="w-full bg-white/5 border border-white/10 rounded-lg p-3 outline-none focus:border-brand-primary uppercase"
+                      placeholder="e.g. VOUGE, TIME, FORBES"
+                      value={formData.magazineName} onChange={(e) => setFormData({ ...formData, magazineName: e.target.value })} />
+                  </div>
                 </div>
               </motion.div>
             )}
@@ -217,16 +224,47 @@ export default function CreateExperience() {
             )}
 
             {step === 3 && (
-              <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-6">
-                <div className="border-2 border-dashed border-white/20 rounded-2xl p-12 text-center hover:border-brand-primary/50 transition-colors">
-                  <input type="file" multiple accept="image/*" className="hidden" id="photo-upload" onChange={handlePhotoUpload} />
-                  <label htmlFor="photo-upload" className="cursor-pointer flex flex-col items-center">
-                    <div className="w-16 h-16 rounded-full bg-brand-primary/20 flex items-center justify-center mb-4 text-brand-primary">
-                      <Plus className="w-8 h-8" />
+              <motion.div key="step3" initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }} className="space-y-8">
+                <div>
+                  <h3 className="text-xl mb-4 font-editorial">Magazine Cover Photo</h3>
+                  {formData.magazinePhoto ? (
+                    <div className="relative w-32 md:w-48 aspect-[3/4] rounded-lg overflow-hidden group shadow-xl">
+                      <img src={formData.magazinePhoto} alt="Magazine Cover" className="w-full h-full object-cover" />
+                      <button onClick={() => setFormData({ ...formData, magazinePhoto: "" })} className="absolute inset-0 bg-black/60 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity text-red-400">
+                        <Trash2 className="w-8 h-8" />
+                      </button>
                     </div>
-                    <span className="text-lg">Click to Upload Photos</span>
-                    <span className="text-sm text-brand-light/50 mt-2">Up to 10 photos (they will be compressed for local preview)</span>
-                  </label>
+                  ) : (
+                    <div className="border-2 border-dashed border-white/20 rounded-2xl p-8 text-center hover:border-brand-primary/50 transition-colors max-w-sm">
+                      <input type="file" accept="image/*" className="hidden" id="magazine-photo" onChange={async (e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          const resized = await resizeImage(e.target.files[0]);
+                          setFormData({ ...formData, magazinePhoto: resized });
+                        }
+                      }} />
+                      <label htmlFor="magazine-photo" className="cursor-pointer flex flex-col items-center">
+                        <div className="w-12 h-12 rounded-full bg-brand-primary/20 flex items-center justify-center mb-4 text-brand-primary">
+                          <Plus className="w-6 h-6" />
+                        </div>
+                        <span className="text-base">Upload Cover Star Photo</span>
+                        <span className="text-xs text-brand-light/50 mt-2">Recommended: A vertical portrait</span>
+                      </label>
+                    </div>
+                  )}
+                </div>
+
+                <div className="border-t border-white/10 pt-8">
+                  <h3 className="text-xl mb-4 font-editorial">Memory Gallery</h3>
+                  <div className="border-2 border-dashed border-white/20 rounded-2xl p-8 text-center hover:border-brand-primary/50 transition-colors">
+                    <input type="file" multiple accept="image/*" className="hidden" id="photo-upload" onChange={handlePhotoUpload} />
+                    <label htmlFor="photo-upload" className="cursor-pointer flex flex-col items-center">
+                      <div className="w-12 h-12 rounded-full bg-brand-primary/20 flex items-center justify-center mb-4 text-brand-primary">
+                        <Plus className="w-6 h-6" />
+                      </div>
+                      <span className="text-lg">Click to Upload General Photos</span>
+                      <span className="text-sm text-brand-light/50 mt-2">Up to 10 photos (they will be compressed for local preview)</span>
+                    </label>
+                  </div>
                 </div>
                 
                 {formData.photos && formData.photos.length > 0 && (
