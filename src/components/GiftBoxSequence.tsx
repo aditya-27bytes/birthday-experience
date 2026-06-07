@@ -80,7 +80,7 @@ export function GiftBoxSequence({ onOpen, data }: GiftBoxSequenceProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
         >
-          A Special Gift Has Arrived For You
+          A Special Gift Has Arrived For {data.recipientName || "You"}
         </motion.h1>
         
         <motion.p 
