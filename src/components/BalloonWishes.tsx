@@ -102,11 +102,10 @@ const Balloon = ({
             className="absolute text-center px-4 w-64 max-w-[80vw] z-50 pointer-events-none"
             style={{ 
               left: popPos.x, 
-              top: popPos.y,
-              transform: 'translate(-50%, -50%)' 
+              top: popPos.y
             }}
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.5, x: "-50%", y: "-50%" }}
+            animate={{ opacity: 1, scale: 1, x: "-50%", y: "-50%" }}
             transition={{ duration: 0.5, type: "spring" }}
           >
             <div className="glass-panel p-4 rounded-xl text-brand-light shadow-2xl bg-black/40 backdrop-blur-md">
