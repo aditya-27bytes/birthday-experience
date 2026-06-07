@@ -66,12 +66,36 @@ Then, open [http://localhost:3000](http://localhost:3000) in your browser.
 - `npm start` - Starts the built production server.
 - `npm run lint` - Runs ESLint to catch syntax and style issues.
 
-## 🚢 Deployment
-This project is fully optimized for deployment on **Vercel** or **Netlify**. 
-1. Push your code to a GitHub repository.
-2. Log into Vercel or Netlify.
-3. Import your repository and click "Deploy". 
-Because there is no heavy backend required, the build will complete in minutes!
+## 🚢 Deployment (Vercel)
+
+Vercel is the creator of Next.js and provides the easiest, zero-configuration deployment experience. It is highly recommended to host this project there.
+
+### Step 1: Push Code to GitHub
+Before deploying, ensure your code is safely stored in a GitHub repository:
+1. Go to [GitHub](https://github.com/) and create a **New Repository** (e.g., `birthday-experience`).
+2. Open your terminal in the project folder and run:
+   ```bash
+   git add .
+   git commit -m "Ready for deployment"
+   git branch -M main
+   git remote add origin https://github.com/YOUR_USERNAME/birthday-experience.git
+   git push -u origin main
+   ```
+
+### Step 2: Deploy on Vercel
+1. Create a free account at [Vercel.com](https://vercel.com/) and log in using your GitHub account.
+2. From your Vercel dashboard, click **Add New...** and select **Project**.
+3. Under the *Import Git Repository* section, locate your `birthday-experience` repository and click **Import**.
+4. Configure your project:
+   - **Project Name:** Choose any name you like (e.g., `my-birthday-experience`).
+   - **Framework Preset:** Vercel will automatically detect `Next.js`. Leave this as is.
+   - **Root Directory:** Leave as `./`
+   - **Build and Output Settings:** Vercel automatically configures the correct `npm run build` commands.
+5. Click **Deploy**.
+
+Vercel will now install dependencies, build the Next.js app, and publish it globally. Within 2-3 minutes, you will receive a live URL (e.g., `https://my-birthday-experience.vercel.app`) that you can immediately share!
+
+*Note: Any time you push new code to your `main` branch on GitHub, Vercel will automatically trigger a new deployment to update your live site.*
 
 ---
 *Made for creating unforgettable digital memories.*
